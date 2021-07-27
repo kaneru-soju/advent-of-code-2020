@@ -1,29 +1,50 @@
-# day 1 of Advent of Code 2020
+"""Day 1 of Advent of Code 2020."""
 
-# function to calculate report repair
-def report_repair(filename):
+import pkgutil
 
-    # open the file
-    file = open(filename, 'r')
 
-    # read the lines and add it to a list
-    lines = file.readlines()
-    all_lines = []
-    for line in lines:
-        all_lines.append(line.split('\n')[0])
+def report_repair(all_lines: list[int], goal: int = 2020) -> int:
+    """
+    Calculate report repair (2sum).
 
-    """use 2 for loops to find the two numbers in the list that sum to 2020
-    then return the two numbers and their product"""
-    start = 0
-    iterator = 0
-    goal = 2020
-    for line in all_lines:
-        iterator = start + 1
-        while (iterator < len(all_lines)):
-            if (int(line) + int(all_lines[iterator]) == goal):
-                return int(line), int(all_lines[iterator]), int(line) * int(all_lines[iterator])
-            iterator += 1
-        start += 1
+    :param all_lines: Input data
+    :param goal: Target goal
+    :return: Result
+    """
 
-first_num, second_num, answer = report_repair('day1data.txt')
-print(f"The 2 numbers that add up to 2020 are {first_num} and {second_num}.\nThe answer is {answer}")
+    # use 2 for loops to find the two numbers in the list that sum to 2020
+    # then return the two numbers and their product
+    for start, n in enumerate(all_lines):
+        for m in all_lines[start + 1:]:
+            if n + m == goal:
+                return n * m
+    
+    raise ValueError('Invalid input')
+
+
+def part2(all_lines: list[int]) -> int:
+    """
+    Calculate report repair (3sum).
+
+    :param all_lines: Input data
+    :return: Result
+    """
+    for n in all_lines:
+        try:
+            p1_solution = report_repair(all_lines, goal=2020 - n)
+        except ValueError:
+            pass
+        else:
+            return n * p1_solution
+    
+    raise ValueError('Invalid input')
+
+
+if __name__ == '__main__':
+    raw_data = pkgutil.get_data('day1', 'day1data.txt')
+    problem = [int(n) for n in raw_data.splitlines()]
+
+    answer1 = report_repair(problem)
+    answer2 = part2(problem)
+    print(f"The first answer is {answer1}")
+    print(f"The second answer is {answer2}")
