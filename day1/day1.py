@@ -11,7 +11,6 @@ def report_repair(all_lines: list[int], goal: int = 2020) -> int:
     :param goal: Target goal
     :return: Result
     """
-
     # use 2 for loops to find the two numbers in the list that sum to 2020
     # then return the two numbers and their product
     for start, n in enumerate(all_lines):

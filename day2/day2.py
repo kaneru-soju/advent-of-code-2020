@@ -10,7 +10,6 @@ def valid_passwords(all_lines: list[str]) -> int:
     :param all_lines: Input data
     :return: Valid passwords
     """
-
     valid = 0
 
     # use a for loop to iterate the list and find the total amount of
@@ -35,7 +34,6 @@ def part2(all_lines: list[str]) -> int:
     :param all_lines: Input data
     :return: Valid passwords
     """
-
     valid = 0
 
     # use a for loop to iterate the list and find the total amount of
@@ -59,5 +57,5 @@ if __name__ == '__main__':
 
     answer1 = valid_passwords(problem)
     answer2 = part2(problem)
-    print(f"The first answer is {answer1}")
-    print(f"The second answer is {answer2}")
+    print(f'The first answer is {answer1}')
+    print(f'The second answer is {answer2}')
