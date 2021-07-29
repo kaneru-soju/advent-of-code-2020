@@ -78,7 +78,7 @@ def valid_values(potential_pass: dict) -> bool:
 
     # trivial check for ecl
     valid_ecl = potential_pass['ecl'] in ['amb', 'blu', 'brn', 'gry',
-                                         'grn', 'hzl', 'oth']
+                                          'grn', 'hzl', 'oth']
 
     def pid_string(digits: str) -> bool:
         """
