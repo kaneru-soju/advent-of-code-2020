@@ -10,11 +10,7 @@ def dictionary(passport: list[str]) -> dict:
     :param passport: The input list[str] holding multiple fields
     :return: A dictionary containing key, value pairs for the fields
     """
-    d = {}
-    for field in passport:
-        k, v = field.split(':')
-        d[k] = v
-    return d
+    return dict(field.split(':') for field in passport)
 
 
 def valid_passport(passport_dict: dict) -> bool:

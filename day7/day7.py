@@ -19,7 +19,7 @@ def get_dictionaries(data_set: list[list[str]]):
     each bag
     """
     for data in data_set:
-        container = data[0]+data[1]+data[2]  # the container bag
+        container = "".join(data[:3])  # the container bag
         container = container[:-1]  # remove trailing 's' in 'bags'
         if data[-3] == 'no':  # doesn't contain any other bags
             continue
@@ -94,8 +94,8 @@ def part2(target_bag: str) -> int:
 if __name__ == '__main__':
     raw_data = pkgutil.get_data('day7', 'day7data.txt')
     problem = [string.split() for string in raw_data.decode().splitlines()]
-
     get_dictionaries(problem)
+
     answer1 = part1()
     answer2 = part2(target) - 1  # subtract 1 to disregard original bag
     print(f'The first answer is {answer1}')
