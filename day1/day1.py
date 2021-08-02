@@ -3,7 +3,7 @@
 import pkgutil
 
 
-def report_repair(all_lines: list[int], goal: int = 2020) -> int:
+def report_repair(all_lines: list[int], goal: int) -> int:
     """
     Calculate report repair (2sum).
 
@@ -17,7 +17,7 @@ def report_repair(all_lines: list[int], goal: int = 2020) -> int:
         for m in all_lines[start + 1:]:
             if n + m == goal:
                 return n * m
-    
+
     raise ValueError('Invalid input')
 
 
@@ -30,12 +30,12 @@ def part2(all_lines: list[int]) -> int:
     """
     for n in all_lines:
         try:
-            p1_solution = report_repair(all_lines, goal=2020 - n)
+            p1_solution = report_repair(all_lines, 2020 - n)
         except ValueError:
             pass
         else:
             return n * p1_solution
-    
+
     raise ValueError('Invalid input')
 
 
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     raw_data = pkgutil.get_data('day1', 'day1data.txt')
     problem = [int(n) for n in raw_data.splitlines()]
 
-    answer1 = report_repair(problem)
+    answer1 = report_repair(problem, 2020)
     answer2 = part2(problem)
     print(f"The first answer is {answer1}")
     print(f"The second answer is {answer2}")
